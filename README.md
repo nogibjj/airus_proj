@@ -1,2 +1,3 @@
 # airus_proj
-![Actions](https://github.com/nogibjj/airus-proj/actions/workflows/main.yml/badge.svg)
+[![Actions](https://github.com/nogibjj/airus-proj/actions/workflows/main.yml/badge.svg)]
+(https://github.com/nogibjj/airus-proj/actions/workflows/main.yml)
