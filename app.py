@@ -13,9 +13,7 @@ app = FastAPI()
 async def root():
     return {"message": "Hello Databricks"}
     
-# query 1:
-#   input: job position -- full-time
-#   output: the average salary of different levels in this position in the US from 2020-2022
+# query 1
 @app.get("/salaryofposition/{position}")
 async def getSalaryofPosition(position: str):
     salarylist_Avg = querySalaryofLevels(position)
@@ -24,7 +22,8 @@ async def getSalaryofPosition(position: str):
     ansdict["Average salary of medium level position (USD)"] = salarylist_Avg[1]
     ansdict["Average salary of senior level position (USD)"] = salarylist_Avg[2]
     return ansdict
-
+    
+# query 2
 @app.get("/currency/{currency}")
 async def queryByremote_Currency(currency:str):
     res=querySalaryByCurrency(currency)
