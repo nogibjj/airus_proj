@@ -1,17 +1,36 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+from dblib.querydb import querydb
+from dblib.querydb import querySalaryofLevels
+from dblib.querydb import querySalaryByCurrency
 import uvicorn
 
 app = FastAPI()
 
-
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
+async def root():
+    return {"message": "Hello Databricks"}
+    
+# query 1:
+#   input: job position -- full-time
+#   output: the average salary of different levels in this position in the US from 2020-2022
+@app.get("/salaryofposition/{position}")
+async def getSalaryofPosition(position: str):
+    salarylist_Avg = querySalaryofLevels(position)
+    ansdict = {}
+    ansdict["Average salary of entry level position (USD)"] = salarylist_Avg[0]
+    ansdict["Average salary of medium level position (USD)"] = salarylist_Avg[1]
+    ansdict["Average salary of senior level position (USD)"] = salarylist_Avg[2]
+    return ansdict
 
+@app.get("/currency/{currency}")
+async def queryByremote_Currency(currency:str):
+    res=querySalaryByCurrency(currency)
+    ans={};
+    ans["Average salary of the salary currency: "+currency+" is "]=res
+    return ans
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
-    return {"item_id": item_id, "q": q}
-
-if __name__ == '__main__':
-    uvicorn.run(app, port=8080, host='0.0.0.0')
+if __name__ == "__main__":
+    uvicorn.run(app, port=8080, host="0.0.0.0")

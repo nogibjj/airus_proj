@@ -14,3 +14,5 @@ ipython
 databricks-sql-connector
 databricks-connect==10.4.*
 uvicorn[standard]
+pydantic 
+sqlalchemy.orm
