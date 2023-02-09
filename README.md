@@ -11,3 +11,5 @@
    - query by position
    - query by currency
 ![Figure](https://github.com/nogibjj/airus_proj/blob/main/Screen%20Shot%202023-02-08%20at%2010.35.46%20AM.png)
+   - deploy to aws app runner
+![Figure](https://github.com/nogibjj/airus_proj/blob/main/Screen%20Shot%202023-02-08%20at%2011.04.34%20PM.png)
